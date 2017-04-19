@@ -1,0 +1,321 @@
+<!--
+Copyright 2017 Next Century Corporation
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../image-query-and-display.html">
+</head>
+
+<body>
+  <test-fixture id="image-query-and-display-fixture">
+    <template>
+      <image-query-and-display></image-query-and-display>
+    </template>
+  </test-fixture>
+
+  <script>
+    /* globals suite, setup, fixture, test, expect, flush */
+    /* jshint -W030 */
+    suite('image-query-and-display tests', function() {
+      var element;
+
+      setup(function(done) {
+        element = fixture('image-query-and-display-fixture');
+        element.pageSize = 2;
+        element.images = [{
+          count: 10,
+          id: 'image1',
+          source: 'url1'
+        }, {
+          count: 5,
+          id: 'image2',
+          source: 'url2'
+        }, {
+          count: 2,
+          id: 'image3',
+          source: 'url3'
+        }, {
+          count: 1,
+          id: 'image4',
+          source: 'url4'
+        }, {
+          count: 1,
+          id: 'image5',
+          source: 'url5'
+        }];
+        flush(done);
+      });
+
+      test('input properties are set correctly', function() {
+        expect(element.images).to.deep.equal([{
+          count: 10,
+          id: 'image1',
+          source: 'url1'
+        }, {
+          count: 5,
+          id: 'image2',
+          source: 'url2'
+        }, {
+          count: 2,
+          id: 'image3',
+          source: 'url3'
+        }, {
+          count: 1,
+          id: 'image4',
+          source: 'url4'
+        }, {
+          count: 1,
+          id: 'image5',
+          source: 'url5'
+        }]);
+        expect(element.loadedImages).to.deep.equal([{
+          count: 10,
+          id: 'image1',
+          source: 'url1'
+        }, {
+          count: 5,
+          id: 'image2',
+          source: 'url2'
+        }]);
+        expect(element.pageSize).to.equal(2);
+      });
+
+      test('default properties are set correctly', function() {
+        expect(element.aggregationCount).to.equal(0);
+        expect(element.aggregationDirection).to.equal('desc');
+        expect(element.aggregationField).to.not.exist;
+        expect(element.aggregationName).to.equal('aggregation');
+        expect(element.aggregationOrder).to.equal('');
+        expect(element.aggregationType).to.equal('terms');
+        expect(element.blur).to.be.false;
+        expect(element.checkboxName).to.equal('Filter');
+        expect(element.client).to.not.exist;
+        expect(element.filterList).to.not.exist;
+        expect(element.headerCountsName).to.equal('');
+        expect(element.headerEntityName).to.equal('');
+        expect(element.imageCountProperty).to.equal('count');
+        expect(element.imageIconProperty).to.equal('icon');
+        expect(element.imageIdProperty).to.equal('id');
+        expect(element.imageLinkProperty).to.equal('link');
+        expect(element.imageSourceProperty).to.equal('source');
+        expect(element.imageStyleClassProperty).to.equal('styleClass');
+        expect(element.imageTextProperty).to.equal('text');
+        expect(element.indexName).to.not.exist;
+        expect(element.indexTypes).to.not.exist;
+        expect(element.newTab).to.be.false;
+        expect(element.queryFields).to.not.exist;
+        expect(element.queryValues).to.not.exist;
+        expect(element.showCheckboxes).to.be.false;
+        expect(element.transformConfig).to.not.exist;
+        expect(element.transformFunction).to.not.exist;
+        expect(element.error).to.be.null;
+        expect(element.errorMessage).to.equal('');
+        expect(element.hovering).to.deep.equal([]);
+        expect(element.loading).to.be.false;
+        expect(element.selected).to.deep.equal([]);
+      });
+
+      test('updating images to empty array does update loadedImages', function() {
+        element.images = [];
+
+        expect(element.images).to.deep.equal([]);
+        expect(element.loadedImages).to.deep.equal([]);
+      });
+
+      test('updating images to a new array does update loadedImages', function() {
+        element.images = [{
+          count: 1,
+          id: 'image6',
+          source: 'url6'
+        }];
+
+        expect(element.images).to.deep.equal([{
+          count: 1,
+          id: 'image6',
+          source: 'url6'
+        }]);
+        expect(element.loadedImages).to.deep.equal([{
+          count: 1,
+          id: 'image6',
+          source: 'url6'
+        }]);
+      });
+
+      test('does show a build-and-run-aggregation element', function() {
+        element.aggregationCount = 10;
+        element.aggregationDirection = 'asc';
+        element.aggregationField = 'myAggregationField';
+        element.aggregationName = 'agg';
+        element.aggregationOrder = '_key';
+        element.aggregationType = 'sum';
+        element.indexName = 'myIndexName';
+        element.indexTypes = ['myIndexType'];
+        element.queryFields = ['myQueryField'];
+        element.queryValues = ['myQueryValue'];
+        element.transformConfig = {};
+        element.transformFunction = function() {};
+
+        expect(element.$$('build-and-run-aggregation')).to.exist;
+        expect(element.$$('build-and-run-aggregation').aggregationCount).to.equal(10);
+        expect(element.$$('build-and-run-aggregation').aggregationDirection).to.equal('asc');
+        expect(element.$$('build-and-run-aggregation').aggregationField).to.equal('myAggregationField');
+        expect(element.$$('build-and-run-aggregation').aggregationName).to.equal('agg');
+        expect(element.$$('build-and-run-aggregation').aggregationOrder).to.equal('_key');
+        expect(element.$$('build-and-run-aggregation').aggregationType).to.equal('sum');
+        expect(element.$$('build-and-run-aggregation').indexName).to.equal('myIndexName');
+        expect(element.$$('build-and-run-aggregation').indexTypes).to.deep.equal(['myIndexType']);
+        expect(element.$$('build-and-run-aggregation').queryFields).to.deep.equal(['myQueryField']);
+        expect(element.$$('build-and-run-aggregation').queryValues).to.deep.equal(['myQueryValue']);
+        expect(element.$$('build-and-run-aggregation').transformConfig).to.deep.equal({});
+        expect(element.$$('build-and-run-aggregation').transformFunction).to.deep.equal(element.transformFunction);
+      });
+
+      test('does show an elastic-error element', function() {
+        expect(element.$$('elastic-error')).to.exist;
+      });
+
+      test('does show an aggregation-display element', function() {
+        element.aggregationField = 'myAggregationField';
+        element.headerCountsName = 'My Counts';
+        element.headerEntityName = 'My Entity';
+        element.imageCountProperty = 'myCount';
+        element.imageIconProperty = 'myIcon';
+        element.imageIdProperty = 'myId';
+        element.imageLinkProperty = 'myLink';
+        element.imageStyleClassProperty = 'myStyleClass';
+        element.imageTextProperty = 'myText';
+        element.indexName = 'myIndexName';
+        element.indexTypes = ['myIndexType'];
+
+        expect(element.$$('aggregation-display')).to.exist;
+        expect(element.$$('aggregation-display').style.display).to.equal('');
+        expect(element.$$('aggregation-display').getAttribute('show-checkboxes')).to.not.exist;
+        expect(element.$$('aggregation-display').getAttribute('show-double-bar-chart')).to.exist;
+        expect(element.$$('aggregation-display').small).to.exist;
+        expect(element.$$('aggregation-display').countProperty).to.equal('myCount');
+        expect(element.$$('aggregation-display').iconProperty).to.equal('myIcon');
+        expect(element.$$('aggregation-display').idProperty).to.equal('myId');
+        expect(element.$$('aggregation-display').linkProperty).to.equal('myLink');
+        expect(element.$$('aggregation-display').styleClassProperty).to.equal('myStyleClass');
+        expect(element.$$('aggregation-display').textProperty).to.equal('myText');
+        expect(element.$$('aggregation-display').headerCountsName).to.equal('My Counts');
+        expect(element.$$('aggregation-display').headerDataName).to.equal('Image');
+        expect(element.$$('aggregation-display').headerEntityName).to.equal('My Entity');
+        expect(element.$$('aggregation-display').indexName).to.equal('myIndexName');
+        expect(element.$$('aggregation-display').indexTypes).to.deep.equal(['myIndexType']);
+        expect(element.$$('aggregation-display').limit).to.equal(0);
+        expect(element.$$('aggregation-display').queryField).to.equal('myAggregationField');
+        expect(element.$$('aggregation-display').selectedIds).to.deep.equal([]);
+        expect(element.$$('aggregation-display').data).to.deep.equal([{
+          count: 10,
+          id: 'image1',
+          source: 'url1'
+        }, {
+          count: 5,
+          id: 'image2',
+          source: 'url2'
+        }]);
+      });
+
+      test('does show an aggregation-display element with checkboxes if showCheckboxes=true', function() {
+        element.showCheckboxes = true;
+        element.checkboxName = 'My Checkbox';
+
+        expect(element.$$('aggregation-display')).to.exist;
+        expect(element.$$('aggregation-display').style.display).to.equal('');
+        expect(element.$$('aggregation-display').getAttribute('show-double-bar-chart')).to.exist;
+        expect(element.$$('aggregation-display').small).to.exist;
+        expect(element.$$('aggregation-display').checkboxName).to.equal('My Checkbox');
+        expect(element.$$('aggregation-display').headerDataName).to.equal('Image');
+        expect(element.$$('aggregation-display').limit).to.equal(0);
+        expect(element.$$('aggregation-display').selectedIds).to.deep.equal([]);
+        expect(element.$$('aggregation-display').data).to.deep.equal([{
+          count: 10,
+          id: 'image1',
+          source: 'url1'
+        }, {
+          count: 5,
+          id: 'image2',
+          source: 'url2'
+        }]);
+      });
+
+      test('does not show an aggregation-display element if loadedImages=[]', function(done) {
+        element.images = [];
+
+        flush(function() {
+          expect(element.loadedImages).to.deep.equal([]);
+          expect(element.$$('aggregation-display')).to.exist;
+          expect(element.$$('aggregation-display').style.display).to.equal('none');
+          done();
+        });
+      });
+
+      test('does show an auto-paginated-image-gallery element', function() {
+        element.blur = true;
+        element.imageIdProperty = 'myId';
+        element.imageLinkProperty = 'myLink';
+        element.imageSourceProperty = 'mySource';
+        element.newTab = true;
+
+        expect(element.$$('auto-paginated-image-gallery')).to.exist;
+        expect(element.$$('auto-paginated-image-gallery').style.display).to.equal('');
+        expect(element.$$('auto-paginated-image-gallery').imageIdProperty).to.equal('myId');
+        expect(element.$$('auto-paginated-image-gallery').imageLinkProperty).to.equal('myLink');
+        expect(element.$$('auto-paginated-image-gallery').imageSourceProperty).to.equal('mySource');
+        expect(element.$$('auto-paginated-image-gallery').pageSize).to.equal(2);
+        expect(element.$$('auto-paginated-image-gallery').blur).to.be.true;
+        expect(element.$$('auto-paginated-image-gallery').newTab).to.be.true;
+        expect(element.$$('auto-paginated-image-gallery').hovering).to.deep.equal([]);
+        expect(element.$$('auto-paginated-image-gallery').images).to.deep.equal([{
+          count: 10,
+          id: 'image1',
+          source: 'url1'
+        }, {
+          count: 5,
+          id: 'image2',
+          source: 'url2'
+        }, {
+          count: 2,
+          id: 'image3',
+          source: 'url3'
+        }, {
+          count: 1,
+          id: 'image4',
+          source: 'url4'
+        }, {
+          count: 1,
+          id: 'image5',
+          source: 'url5'
+        }]);
+        expect(element.$$('auto-paginated-image-gallery').loadedImages).to.deep.equal([{
+          count: 10,
+          id: 'image1',
+          source: 'url1'
+        }, {
+          count: 5,
+          id: 'image2',
+          source: 'url2'
+        }]);
+      });
+    });
+  </script>
+</body>
+</html>

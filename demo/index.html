@@ -1,0 +1,105 @@
+<!--
+Copyright 2017 Next Century Corporation
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../image-query-and-display.html">
+</head>
+
+<body unresolved>
+  <template is="dom-bind" id="demo">
+    <h3>Input</h3>
+    <p>Header Counts Name: My Counts</p>
+    <p>Header Entity Name: My Entity</p>
+    <p>Show Checkboxes: true</p>
+    <p>Checkbox Name: My Checkbox</p>
+    <p>Page Size: 2</p>
+    <p>Images: [[stringify(images)]]</p>
+
+    <h3>Output</h3>
+    <p>Hovering:  [[hovering]]</p>
+    <p>Loaded Images: [[stringify(loadedImages)]]</p>
+    <p>Selected:  [[selected]]</p>
+
+    <image-query-and-display
+      header-counts-name="My Counts"
+      header-entity-name="My Entity"
+      show-checkboxes
+      checkbox-name="My Checkbox"
+      page-size="2"
+      images="[[images]]"
+      hovering="{{hovering}}"
+      loaded-images="{{loadedImages}}"
+      selected="{{selected}}">
+    </image-query-and-display>
+  </template>
+
+  <script>
+    (function(document) {
+      var demo = document.querySelector('#demo');
+
+      demo.images = [{
+        count: 10,
+        icon: 'icons:polymer',
+        id: 1,
+        link: 'http://nextcentury.com',
+        max: 10,
+        source: 'NextCentury.png',
+        text: 'Bar 1'
+      }, {
+        count: 5,
+        icon: 'icons:polymer',
+        id: 2,
+        link: 'http://nextcentury.com',
+        max: 10,
+        source: 'NextCentury.png',
+        text: 'Bar 2'
+      }, {
+        count: 2,
+        icon: 'icons:polymer',
+        id: 3,
+        link: 'http://nextcentury.com',
+        max: 10,
+        source: 'NextCentury.png',
+        text: 'Bar 3'
+      }, {
+        count: 1,
+        icon: 'icons:polymer',
+        id: 4,
+        link: 'http://nextcentury.com',
+        max: 10,
+        source: 'NextCentury.png',
+        text: 'Bar 4'
+      }, {
+        count: 0,
+        icon: 'icons:polymer',
+        id: 5,
+        link: 'http://nextcentury.com',
+        max: 10,
+        source: 'NextCentury.png',
+        text: 'Bar 5'
+      }];
+
+      demo.stringify = function(data) {
+        return JSON.stringify(data);
+      };
+    })(document);
+  </script>
+</body>
+</html>
