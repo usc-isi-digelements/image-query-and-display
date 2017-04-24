@@ -104,7 +104,6 @@ limitations under the License.
         expect(element.aggregationName).to.equal('aggregation');
         expect(element.aggregationOrder).to.equal('');
         expect(element.aggregationType).to.equal('terms');
-        expect(element.blur).to.be.false;
         expect(element.checkboxName).to.equal('Filter');
         expect(element.client).to.not.exist;
         expect(element.filterList).to.not.exist;
@@ -119,10 +118,12 @@ limitations under the License.
         expect(element.imageTextProperty).to.equal('text');
         expect(element.indexName).to.not.exist;
         expect(element.indexTypes).to.not.exist;
+        expect(element.largeImageStyleClass).to.equal('');
         expect(element.newTab).to.be.false;
         expect(element.queryFields).to.not.exist;
         expect(element.queryValues).to.not.exist;
         expect(element.showCheckboxes).to.be.false;
+        expect(element.smallImageStyleClass).to.equal('');
         expect(element.transformConfig).to.not.exist;
         expect(element.transformFunction).to.not.exist;
         expect(element.error).to.be.null;
@@ -269,10 +270,11 @@ limitations under the License.
       });
 
       test('does show an auto-paginated-image-gallery element', function() {
-        element.blur = true;
         element.imageIdProperty = 'myId';
         element.imageLinkProperty = 'myLink';
         element.imageSourceProperty = 'mySource';
+        element.smallImageStyleClass = 'mySmallImage';
+        element.largeImageStyleClass = 'myLargeImage';
         element.newTab = true;
 
         expect(element.$$('auto-paginated-image-gallery')).to.exist;
@@ -280,8 +282,9 @@ limitations under the License.
         expect(element.$$('auto-paginated-image-gallery').imageIdProperty).to.equal('myId');
         expect(element.$$('auto-paginated-image-gallery').imageLinkProperty).to.equal('myLink');
         expect(element.$$('auto-paginated-image-gallery').imageSourceProperty).to.equal('mySource');
+        expect(element.$$('auto-paginated-image-gallery').smallImageStyleClass).to.equal('mySmallImage');
+        expect(element.$$('auto-paginated-image-gallery').largeImageStyleClass).to.equal('myLargeImage');
         expect(element.$$('auto-paginated-image-gallery').pageSize).to.equal(2);
-        expect(element.$$('auto-paginated-image-gallery').blur).to.be.true;
         expect(element.$$('auto-paginated-image-gallery').newTab).to.be.true;
         expect(element.$$('auto-paginated-image-gallery').hovering).to.deep.equal([]);
         expect(element.$$('auto-paginated-image-gallery').images).to.deep.equal([{
