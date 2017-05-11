@@ -80,6 +80,7 @@ Custom property                            | Description                        
       aggregation-type="[[aggregationType]]"
       query-fields="[[queryFields]]"
       query-values="[[queryValues]]"
+      query="{{query}}"
       client="[[client]]"
       index-name="[[indexName]]"
       index-types="[[indexTypes]]"
@@ -432,9 +433,21 @@ Custom property                            | Description                        
         },
 
         /**
+         * (Optional|Output)
+         *
+         * The elasticsearch query object.  Can be set instead of `queryFields` and `queryValues`.
+         *
+         * @type {Object}
+         */
+        query: {
+          notify: true,
+          type: Object
+        },
+
+        /**
          * (Required)
          *
-         * The string or array field of the elasticsearch aggregation query.
+         * The string or array field of the elasticsearch aggregation query.  Not required if `query` is set.
          *
          * @type {Array}
          */
@@ -445,7 +458,7 @@ Custom property                            | Description                        
         /**
          * (Required)
          *
-         * The string or array value of the elasticsearch aggregation query.
+         * The string or array value of the elasticsearch aggregation query.  Not required if `query` is set.
          *
          * @type {Array}
          */
