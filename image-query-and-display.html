@@ -85,6 +85,7 @@ Custom property                            | Description                        
       index-name="[[indexName]]"
       index-types="[[indexTypes]]"
       filters="[[filterList]]"
+      properties-ready="[[propertiesReady]]"
       transform-config="[[transformConfig]]"
       transform-function="[[transformFunction]]"
       error="{{error}}"
@@ -432,6 +433,19 @@ Custom property                            | Description                        
         newTab: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether the elasticsearch query is ready to be run.  False forbids the query to be run at all.
+         *
+         * @type {Boolean}
+         * @default true
+         */
+        propertiesReady: {
+          type: Boolean,
+          value: true
         },
 
         /**
