@@ -58,19 +58,19 @@ Custom property                            | Description                        
 -->
 
 <dom-module id="image-query-and-display">
-  <style>
-    auto-paginated-image-gallery {
-      --auto-paginated-image-gallery-max-height: var(--image-query-and-display-max-height, 160px);
-      --auto-paginated-image-gallery-hovering-color: var(--image-query-and-display-hovering-color);
-      --auto-paginated-image-gallery-selected-color: var(--image-query-and-display-selected-color);
-    }
-
-    aggregation-display {
-      margin-bottom: 20px;
-    }
-  </style>
-
   <template>
+    <style>
+      auto-paginated-image-gallery {
+        --auto-paginated-image-gallery-max-height: var(--image-query-and-display-max-height, 160px);
+        --auto-paginated-image-gallery-hovering-color: var(--image-query-and-display-hovering-color);
+        --auto-paginated-image-gallery-selected-color: var(--image-query-and-display-selected-color);
+      }
+
+      aggregation-display {
+        margin-bottom: 20px;
+      }
+    </style>
+
     <build-and-run-aggregation
       aggregation-count="[[aggregationCount]]"
       aggregation-direction="[[aggregationDirection]]"
