@@ -18,88 +18,89 @@ limitations under the License.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
   <link rel="import" href="../image-query-and-display.html">
 </head>
 
 <body unresolved>
-  <template is="dom-bind" id="demo">
-    <h3>Input</h3>
-    <p>Header Counts Name: My Counts</p>
-    <p>Header Entity Name: My Entity</p>
-    <p>Show Checkboxes: true</p>
-    <p>Checkbox Name: My Checkbox</p>
-    <p>Page Size: 2</p>
-    <p>Images: [[stringify(images)]]</p>
+  <dom-bind> 
+    <script>
+      (function(document) {
+        var demo = document.querySelector('dom-bind');
 
-    <h3>Output</h3>
-    <p>Hovering:  [[hovering]]</p>
-    <p>Loaded Images: [[stringify(loadedImages)]]</p>
-    <p>Selected:  [[selected]]</p>
+        demo.images = [{
+          count: 10,
+          icon: 'icons:polymer',
+          id: 1,
+          link: 'http://nextcentury.com',
+          max: 10,
+          source: 'NextCentury.png',
+          text: 'Bar 1'
+        }, {
+          count: 5,
+          icon: 'icons:polymer',
+          id: 2,
+          link: 'http://nextcentury.com',
+          max: 10,
+          source: 'NextCentury.png',
+          text: 'Bar 2'
+        }, {
+          count: 2,
+          icon: 'icons:polymer',
+          id: 3,
+          link: 'http://nextcentury.com',
+          max: 10,
+          source: 'NextCentury.png',
+          text: 'Bar 3'
+        }, {
+          count: 1,
+          icon: 'icons:polymer',
+          id: 4,
+          link: 'http://nextcentury.com',
+          max: 10,
+          source: 'NextCentury.png',
+          text: 'Bar 4'
+        }, {
+          count: 0,
+          icon: 'icons:polymer',
+          id: 5,
+          link: 'http://nextcentury.com',
+          max: 10,
+          source: 'NextCentury.png',
+          text: 'Bar 5'
+        }];
 
-    <image-query-and-display
-      header-counts-name="My Counts"
-      header-entity-name="My Entity"
-      show-checkboxes
-      checkbox-name="My Checkbox"
-      page-size="2"
-      images="[[images]]"
-      hovering="{{hovering}}"
-      loaded-images="{{loadedImages}}"
-      selected="{{selected}}">
-    </image-query-and-display>
-  </template>
+        demo.stringify = function(data) {
+          return JSON.stringify(data);
+        };
+      })(document);
+    </script>
+    <template is="dom-bind" id="demo">
+      <h3>Input</h3>
+      <p>Header Counts Name: My Counts</p>
+      <p>Header Entity Name: My Entity</p>
+      <p>Show Checkboxes: true</p>
+      <p>Checkbox Name: My Checkbox</p>
+      <p>Page Size: 2</p>
+      <p>Images: [[stringify(images)]]</p>
 
-  <script>
-    (function(document) {
-      var demo = document.querySelector('#demo');
+      <h3>Output</h3>
+      <p>Hovering:  [[hovering]]</p>
+      <p>Loaded Images: [[stringify(loadedImages)]]</p>
+      <p>Selected:  [[selected]]</p>
 
-      demo.images = [{
-        count: 10,
-        icon: 'icons:polymer',
-        id: 1,
-        link: 'http://nextcentury.com',
-        max: 10,
-        source: 'NextCentury.png',
-        text: 'Bar 1'
-      }, {
-        count: 5,
-        icon: 'icons:polymer',
-        id: 2,
-        link: 'http://nextcentury.com',
-        max: 10,
-        source: 'NextCentury.png',
-        text: 'Bar 2'
-      }, {
-        count: 2,
-        icon: 'icons:polymer',
-        id: 3,
-        link: 'http://nextcentury.com',
-        max: 10,
-        source: 'NextCentury.png',
-        text: 'Bar 3'
-      }, {
-        count: 1,
-        icon: 'icons:polymer',
-        id: 4,
-        link: 'http://nextcentury.com',
-        max: 10,
-        source: 'NextCentury.png',
-        text: 'Bar 4'
-      }, {
-        count: 0,
-        icon: 'icons:polymer',
-        id: 5,
-        link: 'http://nextcentury.com',
-        max: 10,
-        source: 'NextCentury.png',
-        text: 'Bar 5'
-      }];
-
-      demo.stringify = function(data) {
-        return JSON.stringify(data);
-      };
-    })(document);
-  </script>
+      <image-query-and-display
+        header-counts-name="My Counts"
+        header-entity-name="My Entity"
+        show-checkboxes
+        checkbox-name="My Checkbox"
+        page-size="2"
+        images="[[images]]"
+        hovering="{{hovering}}"
+        loaded-images="{{loadedImages}}"
+        selected="{{selected}}">
+      </image-query-and-display>
+    </template>
+  </dom-bind>
 </body>
 </html>
