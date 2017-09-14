@@ -19,6 +19,7 @@ limitations under the License.
 <link rel="import" href="../auto-paginated-image-gallery/auto-paginated-image-gallery.html">
 <link rel="import" href="../build-and-run-aggregation/build-and-run-aggregation.html">
 <link rel="import" href="../elastic-error/elastic-error.html">
+<link rel="import" href="../paper-styles/color.html">
 
 <!--
 A Polymer Element that builds and runs an elasticsearch aggregation query, shows the transformed image results in a paginated image gallery,
@@ -48,11 +49,24 @@ and shows a double bar chart with optional selectable behavior.
 
 `<image-query-and-display>` provides the following custom properties and mixins for styling:
 
-Custom property                            | Description                                  | Default
--------------------------------------------|----------------------------------------------|--------
-`--image-query-and-display-hovering-color` | The background color of the hovering images. | none
-`--image-query-and-display-max-height`     | Maximum height of the gallery                | 160px
-`--image-query-and-display-selected-color` | The background color of the selected images. | none
+Custom property                                          | Description                                                         | Default
+---------------------------------------------------------|---------------------------------------------------------------------|--------
+`--image-query-and-display-hovering-color`               | The background color of the hovering images.                        | none
+`--image-query-and-display-loading-spinner`              | Mixin applied to the loading-spinner.                               | none
+`--image-query-and-display-max-height`                   | Maximum height of the gallery.                                      | 160px
+`--image-query-and-display-scroll-threshold`             | Mixin applied to the iron-scroll-threshold.                         | none
+`--image-query-and-display-selected-color`               | The background color of the selected images.                        | none
+`--image-query-and-display-show-more-button`             | Mixin applied to the show more button.                              | none
+`--image-query-and-display-bar-color`                    | The color of the single or left bars.                               | --paper-grey-400
+`--image-query-and-display-bar-count-color`              | The color of the single or left count labels.                       | --paper-grey-900
+`--image-query-and-display-bar-height`                   | The height of the single or left bars.                              | 20px
+`--image-query-and-display-bar-title-color`              | The color of the single or left title labels.                       | --paper-grey-900
+`--image-query-and-display-bar-title-hover-color`        | The color of the single or left title labels on hover (if a link).  | --paper-grey-700
+`--image-query-and-display-second-bar-color`             | The color of the right (second) bars.                               | --paper-grey-400
+`--image-query-and-display-second-bar-count-color`       | The color of the right (second) count labels.                       | --paper-grey-900
+`--image-query-and-display-second-bar-height`            | The height of the right (second) bars.                              | 20px
+`--image-query-and-display-second-bar-title-color`       | The color of the right (second) title labels.                       | --paper-grey-900
+`--image-query-and-display-second-bar-title-hover-color` | The color of the right (second) title labels on hover (if a link).  | --paper-grey-700
 
 @demo demo/index.html
 -->
@@ -61,13 +75,26 @@ Custom property                            | Description                        
   <template>
     <style>
       auto-paginated-image-gallery {
-        --auto-paginated-image-gallery-max-height: var(--image-query-and-display-max-height, 160px);
         --auto-paginated-image-gallery-hovering-color: var(--image-query-and-display-hovering-color);
+        --auto-paginated-image-gallery-loading-spinner: var(--image-query-and-display-loading-spinner);
+        --auto-paginated-image-gallery-scroll-threshold: var(--image-query-and-display-scroll-threshold);
         --auto-paginated-image-gallery-selected-color: var(--image-query-and-display-selected-color);
+        --auto-paginated-image-gallery-show-more-button: var(--image-query-and-display-show-more-button);
+        --auto-paginated-image-gallery-max-height: var(--image-query-and-display-max-height, 160px);
       }
 
       aggregation-display {
         margin-bottom: 20px;
+        --aggregation-display-bar-color: var(--image-query-and-display-bar-color, var(--paper-grey-400));
+        --aggregation-display-bar-count-color: var(--image-query-and-display-bar-count-color, var(--paper-grey-900));
+        --aggregation-display-bar-height: var(--image-query-and-display-bar-height, 20px);
+        --aggregation-display-bar-title-color: var(--image-query-and-display-bar-title-color, var(--paper-grey-900));
+        --aggregation-display-bar-title-hover-color: var(--image-query-and-display-bar-title-hover-color, var(--paper-grey-700));
+        --aggregation-display-second-bar-color: var(--image-query-and-display-second-bar-color, var(--paper-grey-400));
+        --aggregation-display-second-bar-count-color: var(--image-query-and-display-second-bar-count-color, var(--paper-grey-900));
+        --aggregation-display-second-bar-height: var(--image-query-and-display-second-bar-height, 20px);
+        --aggregation-display-second-bar-title-color: var(--image-query-and-display-second-bar-title-color, var(--paper-grey-900));
+        --aggregation-display-second-bar-title-hover-color: var(--image-query-and-display-second-bar-title-hover-color, var(--paper-grey-700));
       }
     </style>
 
