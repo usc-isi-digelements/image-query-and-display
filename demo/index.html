@@ -35,7 +35,7 @@ limitations under the License.
           link: 'http://nextcentury.com',
           max: 10,
           source: 'NextCentury.png',
-          text: 'Bar 1'
+          text: 'Image 1'
         }, {
           count: 5,
           icon: 'icons:polymer',
@@ -43,7 +43,7 @@ limitations under the License.
           link: 'http://nextcentury.com',
           max: 10,
           source: 'NextCentury.png',
-          text: 'Bar 2'
+          text: 'Image 2'
         }, {
           count: 2,
           icon: 'icons:polymer',
@@ -51,7 +51,7 @@ limitations under the License.
           link: 'http://nextcentury.com',
           max: 10,
           source: 'NextCentury.png',
-          text: 'Bar 3'
+          text: 'Image 3'
         }, {
           count: 1,
           icon: 'icons:polymer',
@@ -59,7 +59,7 @@ limitations under the License.
           link: 'http://nextcentury.com',
           max: 10,
           source: 'NextCentury.png',
-          text: 'Bar 4'
+          text: 'Image 4'
         }, {
           count: 0,
           icon: 'icons:polymer',
@@ -67,7 +67,7 @@ limitations under the License.
           link: 'http://nextcentury.com',
           max: 10,
           source: 'NextCentury.png',
-          text: 'Bar 5'
+          text: 'Image 5'
         }];
 
         demo.stringify = function(data) {
@@ -77,11 +77,13 @@ limitations under the License.
     </script>
     <template is="dom-bind" id="demo">
       <h3>Input</h3>
+      <p>Checkbox Name: My Checkbox</p>
       <p>Header Counts Name: My Counts</p>
       <p>Header Entity Name: My Entity</p>
-      <p>Show Checkboxes: true</p>
-      <p>Checkbox Name: My Checkbox</p>
       <p>Page Size: 2</p>
+      <p>Properties Ready: true</p>
+      <p>Show Checkboxes: true</p>
+      <p>Target: _blank</p>
       <p>Images: [[stringify(images)]]</p>
 
       <h3>Output</h3>
@@ -90,12 +92,14 @@ limitations under the License.
       <p>Selected:  [[selected]]</p>
 
       <image-query-and-display
+        checkbox-name="My Checkbox"
         header-counts-name="My Counts"
         header-entity-name="My Entity"
-        show-checkboxes
-        checkbox-name="My Checkbox"
-        page-size="2"
         images="[[images]]"
+        page-size="2"
+        properties-ready
+        show-checkboxes
+        target="_blank"
         hovering="{{hovering}}"
         loaded-images="{{loadedImages}}"
         selected="{{selected}}">

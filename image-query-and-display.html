@@ -130,6 +130,7 @@ Custom property                                          | Description          
         icon-property="[[imageIconProperty]]"
         id-property="[[imageIdProperty]]"
         link-property="[[imageLinkProperty]]"
+        source-property=""
         style-class-property="[[imageStyleClassProperty]]"
         text-property="[[imageTextProperty]]"
         header-counts-name="[[headerCountsName]]"
@@ -155,12 +156,19 @@ Custom property                                          | Description          
       images="[[images]]"
       image-id-property="[[imageIdProperty]]"
       image-link-property="[[imageLinkProperty]]"
+      image-name-property="[[imageTextProperty]]"
       image-source-property="[[imageSourceProperty]]"
-      small-image-style-class="[[smallImageStyleClass]]"
       large-image-style-class="[[largeImageStyleClass]]"
-      new-tab="[[newTab]]"
+      new-tab="[[_isNewTab(target)]]"
       page-size="[[pageSize]]"
+      select-icon="check-box-outline-blank"
+      show-labels
+      show-select
+      small-image-style-class="[[smallImageStyleClass]]"
+      unselect
+      unselect-icon="check-box"
       hovering="{{hovering}}"
+      selected="{{selected}}"
       loaded-images="{{loadedImages}}">
     </auto-paginated-image-gallery>
   </template>
@@ -452,27 +460,14 @@ Custom property                                          | Description          
         /**
          * (Optional)
          *
-         * Whether to open a link in a new tab.
+         * Whether the elasticsearch query is ready to be run.  False forbids the query to be run at all.
          *
          * @type {Boolean}
          * @default false
          */
-        newTab: {
-          type: Boolean,
-          value: false
-        },
-
-        /**
-         * (Optional)
-         *
-         * Whether the elasticsearch query is ready to be run.  False forbids the query to be run at all.
-         *
-         * @type {Boolean}
-         * @default true
-         */
         propertiesReady: {
           type: Boolean,
-          value: true
+          value: false
         },
 
         /**
@@ -666,6 +661,10 @@ Custom property                                          | Description          
           notify: true,
           type: Object,
         }
+      },
+
+      _isNewTab: function(target) {
+        return target !== '_self';
       }
     });
   })();
