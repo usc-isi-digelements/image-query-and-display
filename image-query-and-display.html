@@ -162,6 +162,7 @@ Custom property                                          | Description          
       new-tab="[[_isNewTab(target)]]"
       page-size="[[pageSize]]"
       select-icon="check-box-outline-blank"
+      selected-property="[[selectedProperty]]"
       show-labels
       show-select
       small-image-style-class="[[smallImageStyleClass]]"
@@ -653,7 +654,7 @@ Custom property                                          | Description          
         /**
          * (Optional|Output)
          *
-         * The list of selected string IDs from the images to filter.  Either a list of an object containing a list at its `selectedProperty` property.
+         * The list of selected string IDs from the images to filter.  Either a list or an object containing a list at its `selectedProperty` property.
          *
          * @type {Array|Object}
          */
