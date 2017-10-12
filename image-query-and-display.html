@@ -74,17 +74,7 @@ Custom property                                          | Description          
 <dom-module id="image-query-and-display">
   <template>
     <style>
-      auto-paginated-image-gallery {
-        --auto-paginated-image-gallery-hovering-color: var(--image-query-and-display-hovering-color);
-        --auto-paginated-image-gallery-loading-spinner: var(--image-query-and-display-loading-spinner);
-        --auto-paginated-image-gallery-scroll-threshold: var(--image-query-and-display-scroll-threshold);
-        --auto-paginated-image-gallery-selected-color: var(--image-query-and-display-selected-color);
-        --auto-paginated-image-gallery-show-more-button: var(--image-query-and-display-show-more-button);
-        --auto-paginated-image-gallery-max-height: var(--image-query-and-display-max-height, 160px);
-      }
-
       aggregation-display {
-        margin-bottom: 20px;
         --aggregation-display-bar-color: var(--image-query-and-display-bar-color, var(--paper-grey-400));
         --aggregation-display-bar-count-color: var(--image-query-and-display-bar-count-color, var(--paper-grey-900));
         --aggregation-display-bar-height: var(--image-query-and-display-bar-height, 20px);
@@ -95,6 +85,20 @@ Custom property                                          | Description          
         --aggregation-display-second-bar-height: var(--image-query-and-display-second-bar-height, 20px);
         --aggregation-display-second-bar-title-color: var(--image-query-and-display-second-bar-title-color, var(--paper-grey-900));
         --aggregation-display-second-bar-title-hover-color: var(--image-query-and-display-second-bar-title-hover-color, var(--paper-grey-700));
+      }
+
+      auto-paginated-image-gallery {
+        margin-top: 20px;
+        --auto-paginated-image-gallery-hovering-color: var(--image-query-and-display-hovering-color);
+        --auto-paginated-image-gallery-loading-spinner: var(--image-query-and-display-loading-spinner);
+        --auto-paginated-image-gallery-scroll-threshold: var(--image-query-and-display-scroll-threshold);
+        --auto-paginated-image-gallery-selected-color: var(--image-query-and-display-selected-color);
+        --auto-paginated-image-gallery-show-more-button: var(--image-query-and-display-show-more-button);
+        --auto-paginated-image-gallery-max-height: var(--image-query-and-display-max-height, 160px);
+      }
+
+      .hide {
+        display: none;
       }
     </style>
 
@@ -122,37 +126,36 @@ Custom property                                          | Description          
 
     <elastic-error error="[[error]]" message="{{errorMessage}}"></elastic-error>
 
-    <template is="dom-if" if="[[loadedImages.length]]">
-      <aggregation-display
-        show-double-bar-chart
-        small
-        count-property="[[imageCountProperty]]"
-        icon-property="[[imageIconProperty]]"
-        id-property="[[imageIdProperty]]"
-        link-property="[[imageLinkProperty]]"
-        source-property=""
-        style-class-property="[[imageStyleClassProperty]]"
-        text-property="[[imageTextProperty]]"
-        header-counts-name="[[headerCountsName]]"
-        header-data-name="Image"
-        header-entity-name="[[headerEntityName]]"
-        error-message="[[errorMessage]]"
-        loading="[[loading]]"
-        client="[[client]]"
-        index-name="[[indexName]]"
-        index-types="[[indexTypes]]"
-        query-field="[[aggregationField]]"
-        limit="0"
-        data="[[loadedImages]]"
-        show-checkboxes="[[showCheckboxes]]"
-        checkbox-name="[[checkboxName]]"
-        target="[[target]]"
-        selected-ids-property="[[selectedProperty]]"
-        selected-ids="{{selected}}">
-      </aggregation-display>
-    </template>
+    <aggregation-display
+      show-double-bar-chart
+      small
+      count-property="[[imageCountProperty]]"
+      icon-property="[[imageIconProperty]]"
+      id-property="[[imageIdProperty]]"
+      link-property="[[imageLinkProperty]]"
+      source-property=""
+      style-class-property="[[imageStyleClassProperty]]"
+      text-property="[[imageTextProperty]]"
+      header-counts-name="[[headerCountsName]]"
+      header-data-name="Image"
+      header-entity-name="[[headerEntityName]]"
+      error-message="[[errorMessage]]"
+      loading="[[loading]]"
+      client="[[client]]"
+      index-name="[[indexName]]"
+      index-types="[[indexTypes]]"
+      query-field="[[aggregationField]]"
+      limit="0"
+      data="[[loadedImages]]"
+      show-checkboxes="[[showCheckboxes]]"
+      checkbox-name="[[checkboxName]]"
+      target="[[target]]"
+      selected-ids-property="[[selectedProperty]]"
+      selected-ids="{{selected}}">
+    </aggregation-display>
 
     <auto-paginated-image-gallery
+      class$="[[_shouldHide(images)]]"
       images="[[images]]"
       image-id-property="[[imageIdProperty]]"
       image-link-property="[[imageLinkProperty]]"
@@ -666,6 +669,10 @@ Custom property                                          | Description          
 
       _isNewTab: function(target) {
         return target !== '_self';
+      },
+
+      _shouldHide: function(images) {
+        return images && images.length ? '' : 'hide';
       }
     });
   })();

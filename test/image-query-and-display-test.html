@@ -240,7 +240,7 @@ limitations under the License.
         element.checkboxName = 'My Checkbox';
 
         expect(element.$$('aggregation-display')).to.exist;
-        expect(element.$$('aggregation-display').style.display).to.equal('');
+        expect(element.$$('aggregation-display').classList.contains('hide')).to.be.false;
         expect(element.$$('aggregation-display').getAttribute('show-double-bar-chart')).to.exist;
         expect(element.$$('aggregation-display').checkboxName).to.equal('My Checkbox');
         expect(element.$$('aggregation-display').headerDataName).to.equal('Image');
@@ -257,13 +257,12 @@ limitations under the License.
         }]);
       });
 
-      test('does not show an aggregation-display element if loadedImages=[]', function(done) {
+      test('does not show an auto-paginated-image-gallery element if images=[]', function(done) {
         element.images = [];
 
         flush(function() {
-          expect(element.loadedImages).to.deep.equal([]);
-          expect(element.$$('aggregation-display')).to.exist;
-          expect(element.$$('aggregation-display').style.display).to.equal('none');
+          expect(element.$$('auto-paginated-image-gallery')).to.exist;
+          expect(element.$$('auto-paginated-image-gallery').classList.contains('hide')).to.be.true;
           done();
         });
       });
@@ -278,7 +277,7 @@ limitations under the License.
         element.target = '_blank';
 
         expect(element.$$('auto-paginated-image-gallery')).to.exist;
-        expect(element.$$('auto-paginated-image-gallery').style.display).to.equal('');
+        expect(element.$$('auto-paginated-image-gallery').classList.contains('hide')).to.be.false;
         expect(element.$$('auto-paginated-image-gallery').hovering).to.deep.equal([]);
         expect(element.$$('auto-paginated-image-gallery').imageIdProperty).to.equal('myId');
         expect(element.$$('auto-paginated-image-gallery').imageLinkProperty).to.equal('myLink');
