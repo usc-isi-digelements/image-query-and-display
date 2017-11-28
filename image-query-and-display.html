@@ -74,6 +74,10 @@ Custom property                                          | Description          
 <dom-module id="image-query-and-display">
   <template>
     <style>
+      :host {
+        display: block;
+      }
+
       aggregation-display {
         --aggregation-display-bar-color: var(--image-query-and-display-bar-color, var(--paper-grey-400));
         --aggregation-display-bar-count-color: var(--image-query-and-display-bar-count-color, var(--paper-grey-900));
@@ -126,55 +130,57 @@ Custom property                                          | Description          
 
     <elastic-error error="[[error]]" message="{{errorMessage}}"></elastic-error>
 
-    <aggregation-display
-      show-double-bar-chart
-      small
-      count-property="[[imageCountProperty]]"
-      icon-property="[[imageIconProperty]]"
-      id-property="[[imageIdProperty]]"
-      link-property="[[imageLinkProperty]]"
-      source-property=""
-      style-class-property="[[imageStyleClassProperty]]"
-      text-property="[[imageTextProperty]]"
-      header-counts-name="[[headerCountsName]]"
-      header-data-name="Image"
-      header-entity-name="[[headerEntityName]]"
-      error-message="[[errorMessage]]"
-      loading="[[loading]]"
-      client="[[client]]"
-      index-name="[[indexName]]"
-      index-types="[[indexTypes]]"
-      query-field="[[aggregationField]]"
-      limit="0"
-      data="[[loadedImages]]"
-      show-checkboxes="[[showCheckboxes]]"
-      checkbox-name="[[checkboxName]]"
-      target="[[target]]"
-      selected-ids-property="[[selectedProperty]]"
-      selected-ids="{{selected}}">
-    </aggregation-display>
+    <template is="dom-if" if="[[!hideImages]]">
+      <aggregation-display
+        show-double-bar-chart
+        small
+        count-property="[[imageCountProperty]]"
+        icon-property="[[imageIconProperty]]"
+        id-property="[[imageIdProperty]]"
+        link-property="[[imageLinkProperty]]"
+        source-property=""
+        style-class-property="[[imageStyleClassProperty]]"
+        text-property="[[imageTextProperty]]"
+        header-counts-name="[[headerCountsName]]"
+        header-data-name="Image"
+        header-entity-name="[[headerEntityName]]"
+        error-message="[[errorMessage]]"
+        loading="[[loading]]"
+        client="[[client]]"
+        index-name="[[indexName]]"
+        index-types="[[indexTypes]]"
+        query-field="[[aggregationField]]"
+        limit="0"
+        data="[[loadedImages]]"
+        show-checkboxes="[[showCheckboxes]]"
+        checkbox-name="[[checkboxName]]"
+        target="[[target]]"
+        selected-ids-property="[[selectedProperty]]"
+        selected-ids="{{selected}}">
+      </aggregation-display>
 
-    <auto-paginated-image-gallery
-      class$="[[_shouldHide(images)]]"
-      images="[[images]]"
-      image-id-property="[[imageIdProperty]]"
-      image-link-property="[[imageLinkProperty]]"
-      image-name-property="[[imageTextProperty]]"
-      image-source-property="[[imageSourceProperty]]"
-      large-image-style-class="[[largeImageStyleClass]]"
-      new-tab="[[_isNewTab(target)]]"
-      page-size="[[pageSize]]"
-      select-icon="check-box-outline-blank"
-      selected-property="[[selectedProperty]]"
-      show-labels
-      show-select
-      small-image-style-class="[[smallImageStyleClass]]"
-      unselect
-      unselect-icon="check-box"
-      hovering="{{hovering}}"
-      selected="{{selected}}"
-      loaded-images="{{loadedImages}}">
-    </auto-paginated-image-gallery>
+      <auto-paginated-image-gallery
+        class$="[[_shouldHide(images)]]"
+        images="[[images]]"
+        image-id-property="[[imageIdProperty]]"
+        image-link-property="[[imageLinkProperty]]"
+        image-name-property="[[imageTextProperty]]"
+        image-source-property="[[imageSourceProperty]]"
+        large-image-style-class="[[largeImageStyleClass]]"
+        new-tab="[[_isNewTab(target)]]"
+        page-size="[[pageSize]]"
+        select-icon="check-box-outline-blank"
+        selected-property="[[selectedProperty]]"
+        show-labels
+        show-select
+        small-image-style-class="[[smallImageStyleClass]]"
+        unselect
+        unselect-icon="check-box"
+        hovering="{{hovering}}"
+        selected="{{selected}}"
+        loaded-images="{{loadedImages}}">
+      </auto-paginated-image-gallery>
+    </template>
   </template>
 
   <script>
@@ -346,6 +352,19 @@ Custom property                                          | Description          
         headerEntityName: {
           type: String,
           value: ''
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether to hide the image bar chart and gallery.
+         *
+         * @type {Boolean}
+         * @default false
+         */
+        hideImages: {
+          type: Boolean,
+          value: false
         },
 
         /**
