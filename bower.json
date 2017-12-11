@@ -1,7 +1,7 @@
 {
   "name": "image-query-and-display",
   "description": "A Polymer Element that builds and runs an elasticsearch aggregation query and shows both a paginated image gallery and a double bar chart.",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "authors": [
     "Next Century Corporation"
   ],
@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.2",
-    "aggregation-display": "DigElements/aggregation-display#2.3.3",
+    "aggregation-display": "DigElements/aggregation-display#2.3.4",
     "auto-paginated-image-gallery": "DigElements/auto-paginated-image-gallery#2.2.5",
     "build-and-run-aggregation": "DigElements/build-and-run-aggregation#2.3.0",
     "elastic-error": "DigElements/elastic-error#2.0.0",
