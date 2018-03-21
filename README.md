@@ -35,16 +35,16 @@ Custom property                                          | Description          
 `--image-query-and-display-scroll-threshold`             | Mixin applied to the iron-scroll-threshold.                         | none
 `--image-query-and-display-selected-color`               | The background color of the selected images.                        | none
 `--image-query-and-display-show-more-button`             | Mixin applied to the show more button.                              | none
-`--image-query-and-display-bar-color`                    | The color of the single or left bars.                               | --paper-grey-400
+`--image-query-and-display-bar-color`                    | The color of the single or left bars.                               | --paper-grey-300
 `--image-query-and-display-bar-count-color`              | The color of the single or left count labels.                       | --paper-grey-900
 `--image-query-and-display-bar-height`                   | The height of the single or left bars.                              | 20px
 `--image-query-and-display-bar-title-color`              | The color of the single or left title labels.                       | --paper-grey-900
-`--image-query-and-display-bar-title-hover-color`        | The color of the single or left title labels on hover (if a link).  | --paper-grey-700
-`--image-query-and-display-second-bar-color`             | The color of the right (second) bars.                               | --paper-grey-400
+`--image-query-and-display-bar-title-hover-color`        | The color of the single or left title labels on hover (if a link).  | --paper-indigo-900
+`--image-query-and-display-second-bar-color`             | The color of the right (second) bars.                               | --paper-grey-300
 `--image-query-and-display-second-bar-count-color`       | The color of the right (second) count labels.                       | --paper-grey-900
 `--image-query-and-display-second-bar-height`            | The height of the right (second) bars.                              | 20px
 `--image-query-and-display-second-bar-title-color`       | The color of the right (second) title labels.                       | --paper-grey-900
-`--image-query-and-display-second-bar-title-hover-color` | The color of the right (second) title labels on hover (if a link).  | --paper-grey-700
+`--image-query-and-display-second-bar-title-hover-color` | The color of the right (second) title labels on hover (if a link).  | --paper-indigo-900
 
 ### Dependencies
 
