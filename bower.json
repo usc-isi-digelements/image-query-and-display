@@ -11,17 +11,17 @@
     "polymer"
   ],
   "main": "image-query-and-display.html",
-  "homepage": "https://github.com/DigElements/image-query-and-display/",
+  "homepage": "https://github.com/usc-isi-digelements/image-query-and-display/",
   "ignore": [
     "/.*",
     "/test/"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.2",
-    "aggregation-display": "DigElements/aggregation-display#2.4.6",
-    "auto-paginated-image-gallery": "DigElements/auto-paginated-image-gallery#2.3.4",
-    "build-and-run-aggregation": "DigElements/build-and-run-aggregation#2.4.2",
-    "elastic-error": "DigElements/elastic-error#2.0.0",
+    "aggregation-display": "usc-isi-digelements/aggregation-display#2.4.6",
+    "auto-paginated-image-gallery": "usc-isi-digelements/auto-paginated-image-gallery#2.3.4",
+    "build-and-run-aggregation": "usc-isi-digelements/build-and-run-aggregation#2.4.2",
+    "elastic-error": "usc-isi-digelements/elastic-error#2.0.0",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
     "paper-styles": "PolymerElements/paper-styles#^2.0.0"
   },
